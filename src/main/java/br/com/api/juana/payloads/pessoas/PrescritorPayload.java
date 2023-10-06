@@ -1,49 +1,52 @@
 package br.com.api.juana.payloads.pessoas;
 
-import java.time.LocalDate;
 import java.util.Objects;
-import br.com.api.juana.payloads.PessoaPayload;
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public final class PrescritorPayload extends PessoaPayload {
+public final class PrescritorPayload {
 	@NotBlank(message = "{numeroRegistro.not.blank}")
 	@Size(min = 10, message = "{numeroRegistro.size.min}")
 	@Size(max = 10, message = "{numeroRegistro.size.max}")
 	private final String numeroRegistro;
 
-	public PrescritorPayload(String nomeCompleto, LocalDate dataNascimento, String numeroRegistro) {
-		super(nomeCompleto, dataNascimento);
+	private final UUID pessoaId;
+
+	public PrescritorPayload(String numeroRegistro, UUID pessoaId) {
 		this.numeroRegistro = numeroRegistro;
+		this.pessoaId = pessoaId;
 	}
 
 	public String getNumeroRegistro() {
 		return numeroRegistro;
 	}
 
+	public UUID getPessoaId() {
+		return pessoaId;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(numeroRegistro);
-		return result;
+		return Objects.hash(numeroRegistro, pessoaId);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		PrescritorPayload other = (PrescritorPayload) obj;
-		return Objects.equals(numeroRegistro, other.numeroRegistro);
+		return Objects.equals(numeroRegistro, other.numeroRegistro) && Objects.equals(pessoaId, other.pessoaId);
 	}
 
 	@Override
 	public String toString() {
-		return "PrescritorDto [numeroRegistro=" + numeroRegistro + ", getNomeCompleto()=" + getNomeCompleto()
-				+ ", getDataNascimento()=" + getDataNascimento() + "]";
+		return "PrescritorPayload [numeroRegistro=" + numeroRegistro + ", pessoaId=" + pessoaId + "]";
 	}
+
 }

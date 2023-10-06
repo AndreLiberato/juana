@@ -1,47 +1,50 @@
 package br.com.api.juana.payloads.pessoas;
 
-import java.time.LocalDate;
 import java.util.Objects;
-import br.com.api.juana.payloads.PessoaPayload;
+import java.util.UUID;
+
 import jakarta.validation.constraints.Size;
 
-public class PacientePayload extends PessoaPayload {
+public class PacientePayload {
 	@Size(min = 5, message = "{nomeSocial.size.min}")
 	@Size(max = 100, message = "{nomeSocial.size.max}")
 	private final String nomeSocial;
 
-	public PacientePayload(String nomeCompleto, LocalDate dataNascimento, String nomeSocial) {
-		super(nomeCompleto, dataNascimento);
+	private final UUID pessoaId;
+
+	public PacientePayload(String nomeSocial, UUID pessoaId) {
 		this.nomeSocial = nomeSocial;
+		this.pessoaId = pessoaId;
 	}
 
 	public String getNomeSocial() {
 		return nomeSocial;
 	}
 
+	public UUID getPessoaId() {
+		return pessoaId;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(nomeSocial);
-		return result;
+		return Objects.hash(nomeSocial, pessoaId);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		PacientePayload other = (PacientePayload) obj;
-		return Objects.equals(nomeSocial, other.nomeSocial);
+		return Objects.equals(nomeSocial, other.nomeSocial) && Objects.equals(pessoaId, other.pessoaId);
 	}
 
 	@Override
 	public String toString() {
-		return "PacienteDto [nomeSocial=" + nomeSocial + ", getNomeCompleto()=" + getNomeCompleto()
-				+ ", getDataNascimento()=" + getDataNascimento() + "]";
+		return "PacientePayload [nomeSocial=" + nomeSocial + ", pessoaId=" + pessoaId + "]";
 	}
+
 }

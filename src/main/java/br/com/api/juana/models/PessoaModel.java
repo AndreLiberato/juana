@@ -5,19 +5,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pessoa")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PessoaModel implements Serializable {
+public class PessoaModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,14 +35,17 @@ public abstract class PessoaModel implements Serializable {
 	private LocalDateTime editadoEm;
 
 	public PessoaModel() {
-		super();
 		this.criadoEm = this.editadoEm = LocalDateTime.now();
 	}
 
 	public PessoaModel(String nomeCompleto, LocalDate dataNascimento) {
-		super();
 		this.nomeCompleto = nomeCompleto;
 		this.dataNascimento = dataNascimento;
+		this.criadoEm = this.editadoEm = LocalDateTime.now();
+	}
+
+	public PessoaModel(UUID id) {
+		this.id = id;
 		this.criadoEm = this.editadoEm = LocalDateTime.now();
 	}
 
@@ -56,11 +57,11 @@ public abstract class PessoaModel implements Serializable {
 		this.id = id;
 	}
 
-	public String getnomeCompleto() {
+	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
 
-	public void setnomeCompleto(String nomeCompleto) {
+	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
 
@@ -104,4 +105,11 @@ public abstract class PessoaModel implements Serializable {
 		PessoaModel other = (PessoaModel) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "PessoaModel [id=" + id + ", nomeCompleto=" + nomeCompleto + ", dataNascimento=" + dataNascimento
+				+ ", criadoEm=" + criadoEm + ", editadoEm=" + editadoEm + "]";
+	}
+
 }
