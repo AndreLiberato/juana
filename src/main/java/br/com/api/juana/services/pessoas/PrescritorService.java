@@ -3,8 +3,10 @@ package br.com.api.juana.services.pessoas;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.api.juana.models.pessoas.PrescritorModel;
 import br.com.api.juana.repositories.pessoas.PrescritorRepository;
 
@@ -26,15 +28,13 @@ public class PrescritorService {
 	}
 
 	public Optional<PrescritorModel> updateEntity(PrescritorModel prescritorModel, UUID id) {
-		Optional<PrescritorModel> busca = prescritorRepository.findById(id);
-		if (busca.isEmpty()) {
+		Optional<PrescritorModel> result = prescritorRepository.findById(id);
+		if (result.isEmpty()) {
 			return Optional.empty();
 		}
-		PrescritorModel paciente = busca.get();
-		paciente.setnomeCompleto(prescritorModel.getnomeCompleto());
-		paciente.setDataNascimento(prescritorModel.getDataNascimento());
-		paciente.setNumeroResgitro(prescritorModel.getNumeroRegistro());
-		return Optional.of(prescritorRepository.save(paciente));
+		PrescritorModel prescritor = result.get();
+		prescritor.setNumeroRegistro(prescritorModel.getNumeroRegistro());
+		return Optional.of(prescritorRepository.save(prescritor));
 	}
 
 	public Optional<PrescritorModel> findOne(UUID id) {
