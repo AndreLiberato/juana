@@ -2,12 +2,13 @@ package br.com.api.juana.payloads;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
-public abstract class PessoaPayload {
+public class PessoaPayload {
 	@NotBlank(message = "{nomeCompleto.not.blank}")
 	@Size(min = 5, message = "{nomeCompleto.size.min}")
 	@Size(max = 100, message = "{nomeCompleto.size.max}")
