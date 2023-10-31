@@ -1,35 +1,56 @@
-package br.com.api.juana.payloads.pessoas;
+package br.com.api.juana.payloads.request.pessoas;
 
 import java.util.Objects;
-import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public final class PrescritorPayload {
+public final class PrescritorRequestPayload {
 	@NotBlank(message = "{numeroRegistro.not.blank}")
-	@Size(min = 10, message = "{numeroRegistro.size.min}")
-	@Size(max = 10, message = "{numeroRegistro.size.max}")
-	private final String numeroRegistro;
+	@Size(min = 10, max = 10, message = "{numeroRegistro.size}")
+	private String numeroRegistroConselho;
 
-	private final UUID pessoaId;
+	@NotBlank(message = "{formacaoAcademica.not.blank}")
+	@Size(min = 3, max = 16, message = "{formacaoAcademica.size}")
+	private String formacaoAcademica;
 
-	public PrescritorPayload(String numeroRegistro, UUID pessoaId) {
-		this.numeroRegistro = numeroRegistro;
-		this.pessoaId = pessoaId;
+	@NotBlank(message = "{especialidade.not.blank}")
+	@Size(min = 3, max = 64, message = "{especialidade.size}")
+	private String especialidade;
+
+	public PrescritorRequestPayload(String numeroRegistroConselho, String formacaoAcademica, String especialidade) {
+		this.numeroRegistroConselho = numeroRegistroConselho;
+		this.formacaoAcademica = formacaoAcademica;
+		this.especialidade = especialidade;
 	}
 
-	public String getNumeroRegistro() {
-		return numeroRegistro;
+	public String getNumeroRegistroConselho() {
+		return numeroRegistroConselho;
 	}
 
-	public UUID getPessoaId() {
-		return pessoaId;
+	public void setNumeroRegistroConselho(String numeroRegistroConselho) {
+		this.numeroRegistroConselho = numeroRegistroConselho;
+	}
+
+	public String getFormacaoAcademica() {
+		return formacaoAcademica;
+	}
+
+	public void setFormacaoAcademica(String formacaoAcademica) {
+		this.formacaoAcademica = formacaoAcademica;
+	}
+
+	public String getEspecialidade() {
+		return especialidade;
+	}
+
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(numeroRegistro, pessoaId);
+		return Objects.hash(especialidade, formacaoAcademica, numeroRegistroConselho);
 	}
 
 	@Override
@@ -40,13 +61,16 @@ public final class PrescritorPayload {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PrescritorPayload other = (PrescritorPayload) obj;
-		return Objects.equals(numeroRegistro, other.numeroRegistro) && Objects.equals(pessoaId, other.pessoaId);
+		PrescritorRequestPayload other = (PrescritorRequestPayload) obj;
+		return Objects.equals(especialidade, other.especialidade)
+				&& Objects.equals(formacaoAcademica, other.formacaoAcademica)
+				&& Objects.equals(numeroRegistroConselho, other.numeroRegistroConselho);
 	}
 
 	@Override
 	public String toString() {
-		return "PrescritorPayload [numeroRegistro=" + numeroRegistro + ", pessoaId=" + pessoaId + "]";
+		return "PrescritorRequestPayload [numeroRegistroConselho=" + numeroRegistroConselho + ", formacaoAcademica="
+				+ formacaoAcademica + ", especialidade=" + especialidade + "]";
 	}
 
 }
