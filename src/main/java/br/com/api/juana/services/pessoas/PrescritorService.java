@@ -33,7 +33,7 @@ public class PrescritorService {
 			return Optional.empty();
 		}
 		PrescritorModel prescritor = result.get();
-		prescritor.setNumeroRegistro(prescritorModel.getNumeroRegistro());
+		prescritor.setNumeroRegistroConselho(prescritorModel.getNumeroRegistroConselho());
 		return Optional.of(prescritorRepository.save(prescritor));
 	}
 
