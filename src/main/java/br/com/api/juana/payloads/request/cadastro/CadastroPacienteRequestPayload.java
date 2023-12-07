@@ -1,102 +1,167 @@
 package br.com.api.juana.payloads.request.cadastro;
 
-import java.util.Objects;
+import org.hibernate.validator.constraints.br.CPF;
 
-import br.com.api.juana.payloads.request.ArquivoRequestPayload;
-import br.com.api.juana.payloads.request.EnderecoRequestPayload;
-import br.com.api.juana.payloads.request.PatologiaRequestPayload;
-import br.com.api.juana.payloads.request.PessoaRequestPayload;
-import br.com.api.juana.payloads.request.pessoas.PacienteRequestPayload;
-import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class CadastroPacienteRequestPayload {
-	@Valid
-	private PessoaRequestPayload pessoaPayload;
-	@Valid
-	private PacienteRequestPayload pacientePayload;
-	@Valid
-	private EnderecoRequestPayload enderecoPayload;
-	@Valid
-	private ArquivoRequestPayload arquivoPayload;
-	@Valid
-	private PatologiaRequestPayload patologiaPayload;
+	@NotBlank(message = "{nomeCompleto.not.blank}")
+	@Size(min = 5, max = 128, message = "{nomeCompleto.size}")
+	private String nomeCompleto;
 
-	public CadastroPacienteRequestPayload(PessoaRequestPayload pessoaPayload, PacienteRequestPayload pacientePayload,
-			EnderecoRequestPayload enderecoPayload, ArquivoRequestPayload arquivoPayload,
-			PatologiaRequestPayload patologiaPayload) {
-		this.pessoaPayload = pessoaPayload;
-		this.pacientePayload = pacientePayload;
-		this.enderecoPayload = enderecoPayload;
-		this.arquivoPayload = arquivoPayload;
-		this.patologiaPayload = patologiaPayload;
+	@NotBlank(message = "{cpf.not.blank}")
+	@CPF
+	private String cpf;
+
+	@Email(message = "{email.invalid}")
+	@NotBlank(message = "{email.not.blank}")
+	@Size(min = 3, max = 64, message = "{email.size}")
+	private String email;
+
+	@NotBlank(message = "{senha.not.blank}")
+	@Size(min = 8, max = 255, message = "{senha.size}")
+	private String senha;
+
+	@NotBlank(message = "{genero.not.blank}")
+	@Size(min = 3, max = 16, message = "{genero.size}")
+	private String genero;
+
+	@NotBlank(message = "{unidadeFederativaNascimento.not.blank}")
+	@Size(min = 2, max = 32, message = "{unidadeFederativaNascimento.size}")
+	private String unidadeFederativaNascimento;
+
+	@NotBlank(message = "{cidadeNascimento.not.blank}")
+	@Size(min = 3, max = 64, message = "{cidadeNascimento.size}")
+	private String cidadeNascimento;
+
+	@NotNull(message = "{dataNascimento.not.null}")
+	private String dataNascimento;
+
+	// Paciente
+	@Size(min = 3, max = 128, message = "{nomeSocial.size}")
+	private String nomeSocial;
+
+	@NotBlank(message = "{estadoCivil.not.blank}")
+	@Size(min = 3, max = 128, message = "{EstadoCivil.size}")
+	private String estadoCivil;
+
+	@Size(min = 3, max = 64, message = "{profissao.size}")
+	private String profissao;
+
+	@Size(min = 3, max = 32, message = "{planoSaude.size}")
+	private String planoSaude;
+
+	@NotNull(message = "{termos.not.null}")
+	private String termos;
+
+	public CadastroPacienteRequestPayload() {
+		// Empty
 	}
 
-	public PessoaRequestPayload getPessoaPayload() {
-		return pessoaPayload;
+	public String getNomeCompleto() {
+		return nomeCompleto;
 	}
 
-	public void setPessoaPayload(PessoaRequestPayload pessoaPayload) {
-		this.pessoaPayload = pessoaPayload;
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
 	}
 
-	public PacienteRequestPayload getPacientePayload() {
-		return pacientePayload;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setPacientePayload(PacienteRequestPayload pacientePayload) {
-		this.pacientePayload = pacientePayload;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public EnderecoRequestPayload getEnderecoPayload() {
-		return enderecoPayload;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEnderecoPayload(EnderecoRequestPayload enderecoPayload) {
-		this.enderecoPayload = enderecoPayload;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public ArquivoRequestPayload getArquivoPayload() {
-		return arquivoPayload;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setArquivoPayload(ArquivoRequestPayload arquivoPayload) {
-		this.arquivoPayload = arquivoPayload;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public PatologiaRequestPayload getPatologiaPayload() {
-		return patologiaPayload;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setPatologiaPayload(PatologiaRequestPayload patologiaPayload) {
-		this.patologiaPayload = patologiaPayload;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(arquivoPayload, enderecoPayload, pacientePayload, patologiaPayload, pessoaPayload);
+	public String getUnidadeFederativaNascimento() {
+		return unidadeFederativaNascimento;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CadastroPacienteRequestPayload other = (CadastroPacienteRequestPayload) obj;
-		return Objects.equals(arquivoPayload, other.arquivoPayload)
-				&& Objects.equals(enderecoPayload, other.enderecoPayload)
-				&& Objects.equals(pacientePayload, other.pacientePayload)
-				&& Objects.equals(patologiaPayload, other.patologiaPayload)
-				&& Objects.equals(pessoaPayload, other.pessoaPayload);
+	public void setUnidadeFederativaNascimento(String unidadeFederativaNascimento) {
+		this.unidadeFederativaNascimento = unidadeFederativaNascimento;
 	}
 
-	@Override
-	public String toString() {
-		return "CadastroPacienteRequestPayload [pessoaPayload=" + pessoaPayload + ", pacientePayload=" + pacientePayload
-				+ ", enderecoPayload=" + enderecoPayload + ", arquivoPayload=" + arquivoPayload + ", patologiaPayload="
-				+ patologiaPayload + "]";
+	public String getCidadeNascimento() {
+		return cidadeNascimento;
 	}
 
+	public void setCidadeNascimento(String cidadeNascimento) {
+		this.cidadeNascimento = cidadeNascimento;
+	}
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getNomeSocial() {
+		return nomeSocial;
+	}
+
+	public void setNomeSocial(String nomeSocial) {
+		this.nomeSocial = nomeSocial;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
+	}
+
+	public String getPlanoSaude() {
+		return planoSaude;
+	}
+
+	public void setPlanoSaude(String planoSaude) {
+		this.planoSaude = planoSaude;
+	}
+
+	public String getTermos() {
+		return termos;
+	}
+
+	public void setTermos(String termos) {
+		this.termos = termos;
+	}
 }

@@ -16,7 +16,7 @@ import br.com.api.juana.enums.UnidadeFederativa;
 import br.com.api.juana.util.EnumUtil;
 
 @RestController
-@RequestMapping("/static")
+@RequestMapping("/enum")
 public class EnumController {
 
     @Autowired
@@ -50,14 +50,14 @@ public class EnumController {
         return ResponseEntity.status(HttpStatus.OK).body(tipoArquivos);
     }
 
-    @GetMapping("/unidade_federativa")
+    @GetMapping("/nome_unidade_federativa")
     public ResponseEntity<?> unidadeFederativa() {
         Map<String, String> unidadesFederativas = enumUtil.toChaveValor(UnidadeFederativa.values());
 
         return ResponseEntity.status(HttpStatus.OK).body(unidadesFederativas);
     }
 
-    @GetMapping("/unidade_federativa/sigla")
+    @GetMapping("/sigla_unidade_federativa")
     public ResponseEntity<?> unidadeFederativaSigla() {
         Map<String, String> unidadesFederativas = enumUtil.toChaveValor(UnidadeFederativa.values(), UnidadeFederativa::getSigla);
 

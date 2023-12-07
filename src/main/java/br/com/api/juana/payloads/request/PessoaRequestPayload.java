@@ -1,6 +1,7 @@
 package br.com.api.juana.payloads.request;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -40,7 +41,7 @@ public class PessoaRequestPayload {
 	@Size(min = 3, max = 32, message = "{nomeExpedidorRegistroGeral.size}")
 	private String nomeExpedidorRegistroGeral;
 
-	@Size(min = 3, max = 32, message = "{unidadeFederativaRegistroGeral.size}")
+	@Size(min = 2, max = 32, message = "{unidadeFederativaRegistroGeral.size}")
 	private String unidadeFederativaRegistroGeral;
 
 	@NotBlank(message = "{genero.not.blank}")
@@ -48,7 +49,7 @@ public class PessoaRequestPayload {
 	private String genero;
 
 	@NotBlank(message = "{unidadeFederativaNascimento.not.blank}")
-	@Size(min = 3, max = 32, message = "{unidadeFederativaNascimento.size}")
+	@Size(min = 2, max = 32, message = "{unidadeFederativaNascimento.size}")
 	private String unidadeFederativaNascimento;
 
 	@NotBlank(message = "{cidadeNascimento.not.blank}")
@@ -61,7 +62,7 @@ public class PessoaRequestPayload {
 
 	public PessoaRequestPayload(String nomeCompleto, String cpf, String email, String senha, String confirmaSenha,
 			String numeroRegistroGeral, String nomeExpedidorRegistroGeral, String unidadeFederativaRegistroGeral,
-			String genero, String unidadeFederativaNascimento, String cidadeNascimento, LocalDate dataNascimento) {
+			String genero, String unidadeFederativaNascimento, String cidadeNascimento, String dataNascimento) {
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 		this.email = email;
@@ -73,7 +74,7 @@ public class PessoaRequestPayload {
 		this.genero = genero;
 		this.unidadeFederativaNascimento = unidadeFederativaNascimento;
 		this.cidadeNascimento = cidadeNascimento;
-		this.dataNascimento = dataNascimento;
+		this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 
 	public String getNomeCompleto() {
