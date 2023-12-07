@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import br.com.api.juana.enums.EstadoCivil;
 import br.com.api.juana.enums.Genero;
 import br.com.api.juana.enums.UnidadeFederativa;
-import br.com.api.juana.models.PatologiaModel;
-import br.com.api.juana.models.enderecos.EnderecoResidencialPacienteModel;
 import br.com.api.juana.models.pessoas.PacienteModel;
 import br.com.api.juana.payloads.request.cadastro.CadastroPacienteRequestPayload;
 
@@ -20,11 +18,6 @@ public class CadastroPacienteRequestMapper {
         paciente.setCpf(cadastroPacienteRequest.getCpf());
         paciente.setEmail(cadastroPacienteRequest.getEmail());
         paciente.setSenha(cadastroPacienteRequest.getSenha());
-        paciente.setNumeroRegistroGeral(cadastroPacienteRequest.getNumeroRegistroGeral());
-        paciente.setNomeExpedidorRegistroGeral(cadastroPacienteRequest.getNomeExpedidorRegistroGeral());
-
-        paciente.setUnidadeFederativaRegistroGeral(
-                UnidadeFederativa.valueOf(cadastroPacienteRequest.getUnidadeFederativaRegistroGeral()));
 
         paciente.setGenero(Genero.valueOf(cadastroPacienteRequest.getGenero()));
 
@@ -43,23 +36,23 @@ public class CadastroPacienteRequestMapper {
         return paciente;
     }
 
-    public PatologiaModel toPatologiaModel(CadastroPacienteRequestPayload cadastroPacienteRequest) {
-        PatologiaModel patologia = new PatologiaModel();
-        patologia.setCodigoInternacional(cadastroPacienteRequest.getCodigoInternacional());
-        patologia.setAnoDiagnostico(cadastroPacienteRequest.getAnoDiagnostico());
-        patologia.setSintomas(cadastroPacienteRequest.getSintomas());
-        return patologia;
-    }
+    // public PatologiaModel toPatologiaModel(CadastroPacienteRequestPayload cadastroPacienteRequest) {
+    //     PatologiaModel patologia = new PatologiaModel();
+    //     patologia.setCodigoInternacional(cadastroPacienteRequest.getCodigoInternacional());
+    //     patologia.setAnoDiagnostico(cadastroPacienteRequest.getAnoDiagnostico());
+    //     patologia.setSintomas(cadastroPacienteRequest.getSintomas());
+    //     return patologia;
+    // }
 
-    public EnderecoResidencialPacienteModel toEnderecoResidencialPacienteModel(CadastroPacienteRequestPayload cadastroPacienteRequest) {
-        EnderecoResidencialPacienteModel endereco = new EnderecoResidencialPacienteModel();
-        endereco.setCep(cadastroPacienteRequest.getCep());
-        endereco.setLogradouro(cadastroPacienteRequest.getLogradouro());
-        endereco.setBairro(cadastroPacienteRequest.getBairro());
-        endereco.setNumero(cadastroPacienteRequest.getNumero());
-        endereco.setUnidadeFederativa(UnidadeFederativa.valueOf(cadastroPacienteRequest.getUnidadeFederativa()));
-        endereco.setCidade(cadastroPacienteRequest.getCidade());
-        endereco.setComplemento(cadastroPacienteRequest.getComplemento());
-        return endereco;
-    }
+    // public EnderecoResidencialPacienteModel toEnderecoResidencialPacienteModel(CadastroPacienteRequestPayload cadastroPacienteRequest) {
+    //     EnderecoResidencialPacienteModel endereco = new EnderecoResidencialPacienteModel();
+    //     endereco.setCep(cadastroPacienteRequest.getCep());
+    //     endereco.setLogradouro(cadastroPacienteRequest.getLogradouro());
+    //     endereco.setBairro(cadastroPacienteRequest.getBairro());
+    //     endereco.setNumero(cadastroPacienteRequest.getNumero());
+    //     endereco.setUnidadeFederativa(UnidadeFederativa.valueOf(cadastroPacienteRequest.getUnidadeFederativa()));
+    //     endereco.setCidade(cadastroPacienteRequest.getCidade());
+    //     endereco.setComplemento(cadastroPacienteRequest.getComplemento());
+    //     return endereco;
+    // }
 }
