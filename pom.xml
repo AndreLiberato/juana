@@ -17,6 +17,7 @@
 	<description>API backend do ERP marijuana</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 	<dependencies>
 		<dependency>
