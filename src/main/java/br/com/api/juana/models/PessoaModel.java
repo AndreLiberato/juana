@@ -30,15 +30,15 @@ public abstract class PessoaModel extends EntidadeModel {
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
-	@Column(name = "numero_registro_geral", length = 8, unique = true)
-	private String numeroRegistroGeral;
+	// @Column(name = "numero_registro_geral", length = 8, unique = true)
+	// private String numeroRegistroGeral;
 
-	@Column(name = "nomeExpedidorRegistroGeral", length = 16)
-	private String nomeExpedidorRegistroGeral;
+	// @Column(name = "nome_expedidor_registro_geral", length = 16)
+	// private String nomeExpedidorRegistroGeral;
 
-	@Column(name = "unidade_federativa_registro_geral", length = 32)
-	@Enumerated(EnumType.STRING)
-	private UnidadeFederativa unidadeFederativaRegistroGeral;
+	// @Column(name = "unidade_federativa_registro_geral", length = 32)
+	// @Enumerated(EnumType.STRING)
+	// private UnidadeFederativa unidadeFederativaRegistroGeral;
 
 	@Column(name = "genero", nullable = false, length = 16)
 	@Enumerated(EnumType.STRING)
@@ -90,29 +90,31 @@ public abstract class PessoaModel extends EntidadeModel {
 		this.senha = senha;
 	}
 
-	public String getNumeroRegistroGeral() {
-		return numeroRegistroGeral;
-	}
+	// public String getNumeroRegistroGeral() {
+	// return numeroRegistroGeral;
+	// }
 
-	public void setNumeroRegistroGeral(String numeroRegistroGeral) {
-		this.numeroRegistroGeral = numeroRegistroGeral;
-	}
+	// public void setNumeroRegistroGeral(String numeroRegistroGeral) {
+	// this.numeroRegistroGeral = numeroRegistroGeral;
+	// }
 
-	public String getNomeExpedidorRegistroGeral() {
-		return nomeExpedidorRegistroGeral;
-	}
+	// public String getNomeExpedidorRegistroGeral() {
+	// return nomeExpedidorRegistroGeral;
+	// }
 
-	public void setNomeExpedidorRegistroGeral(String nomeExpedidorRegistroGeral) {
-		this.nomeExpedidorRegistroGeral = nomeExpedidorRegistroGeral;
-	}
+	// public void setNomeExpedidorRegistroGeral(String nomeExpedidorRegistroGeral)
+	// {
+	// this.nomeExpedidorRegistroGeral = nomeExpedidorRegistroGeral;
+	// }
 
-	public UnidadeFederativa getUnidadeFederativaRegistroGeral() {
-		return unidadeFederativaRegistroGeral;
-	}
+	// public UnidadeFederativa getUnidadeFederativaRegistroGeral() {
+	// return unidadeFederativaRegistroGeral;
+	// }
 
-	public void setUnidadeFederativaRegistroGeral(UnidadeFederativa unidadeFederativaRegistroGeral) {
-		this.unidadeFederativaRegistroGeral = unidadeFederativaRegistroGeral;
-	}
+	// public void setUnidadeFederativaRegistroGeral(UnidadeFederativa
+	// unidadeFederativaRegistroGeral) {
+	// this.unidadeFederativaRegistroGeral = unidadeFederativaRegistroGeral;
+	// }
 
 	public Genero getGenero() {
 		return genero;

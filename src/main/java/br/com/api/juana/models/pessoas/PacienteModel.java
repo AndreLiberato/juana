@@ -22,10 +22,10 @@ public class PacienteModel extends PessoaModel {
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
-	@Column(name = "profissao", nullable = false, length = 64)
+	@Column(name = "profissao", length = 64)
 	private String profissao;
 
-	@Column(name = "plano_saude", nullable = false, length = 32)
+	@Column(name = "plano_saude", length = 32)
 	private String planoSaude;
 
 	public PacienteModel() {
